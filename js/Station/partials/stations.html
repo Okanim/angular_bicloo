@@ -1,0 +1,12 @@
+<div class="">
+  <table>
+    <tr ng-repeat="station in stations">
+      <td>
+          <a href="" ng-click="goToStationDetails(station.number)">{{station.address}}</a>
+      </td>
+      <td>
+        {{station.status}}
+      </td>
+    </tr>
+  </table>
+</div>

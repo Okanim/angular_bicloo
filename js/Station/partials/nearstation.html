@@ -1,0 +1,17 @@
+<div class="">
+  <button type="button" name="button" ng-click="needABicloo()">Trouve un bicloo</button>
+  <button type="button" name="button" ng-click="throwABicloo()">Debarasse toi de ton bicloo</button>
+  <table ng-show="stations">
+    <tr ng-repeat="station in stations">
+      <td>
+          <a href="" ng-click="goToStationDetails(station.number)">{{station.address}}</a>
+      </td>
+      <td>
+        {{station.status}}
+      </td>
+    </tr>
+  </table>
+  <div ng-show="error">
+    {{error}}
+  </div>
+</div>
