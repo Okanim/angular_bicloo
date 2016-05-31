@@ -7,34 +7,32 @@ const _ = require('lodash'),
 
 angular.module('room-share', ['ui.router', 'restangular']).constant('_', _)
   .config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider', function($stateProvider, $urlRouterProvider, RestangularProvider){
-    RestangularProvider.setBaseUrl('https://room-share.firebaseio.com/');
-    RestangularProvider.setRequestSuffix('.json');
-    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred){
-      let dataArray = [];
-      for(let uid in data){
-        dataArray.push({
-          uid,
-          data: data[uid]
-        });
-      }
-      deferred.resolve(dataArray);
-    });
+    RestangularProvider.setBaseUrl('https://api.jcdecaux.com/vls/v1/');
+    RestangularProvider.setRequestSuffix('&apikey=f9d62cfb40a43eb37ebb196f3d80fd24d6a299e7');
     $urlRouterProvider.otherwise('/home');
     $stateProvider.state('home', {
       url: '/home',
       templateUrl: 'js/Home/home.html',
       controller: 'HomeController',
-      resolve: {
-        rooms: function(RoomsService){
-          return RoomsService.getRooms();
+      views:{
+        'stations@home': {
+          controller: 'StationsController',
+          templateUrl: 'stations.html',
+          resolve: {
+            stations: function(StationsService){
+              return StationsService.getAll();
+            }
+          }
         }
       }
     })
-    .state('home.rooms', {
-      url: '/rooms'
+    .state('stations', {
+      abstract: true,
+      url: '/bicloo',
+      template : '<ui-view/>'
     })
-    .state('home.rooms.connect',{
-      url: '/:roomId',
+    .state('stations.detail',{
+      url: '/:stationId',
       templateUrl: 'js/Room/partials/room.connected.html',
       controller: 'RoomsController',
       resolve: {
