@@ -6,6 +6,9 @@ angular.module('bicloo')
 return {
   getAll : function(){
     return stations.getList();
+  },
+  getStationDetails : function(StationId){
+    return Restangular.one('stations', stationId);
   }
 }
 }]);
