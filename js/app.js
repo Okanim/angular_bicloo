@@ -5,7 +5,7 @@ require('webrtc-adapter');
 
 const _ = require('lodash'),
 
-angular.module('room-share', ['ui.router', 'restangular']).constant('_', _)
+angular.module('bicloo', ['ui.router', 'restangular']).constant('_', _)
   .config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider', function($stateProvider, $urlRouterProvider, RestangularProvider){
     RestangularProvider.setBaseUrl('https://api.jcdecaux.com/vls/v1/');
     RestangularProvider.setRequestSuffix('?contract=Nantes&apikey=f9d62cfb40a43eb37ebb196f3d80fd24d6a299e7');
@@ -17,7 +17,7 @@ angular.module('room-share', ['ui.router', 'restangular']).constant('_', _)
       views:{
         'stations@home': {
           controller: 'StationsController',
-          templateUrl: 'stations.html',
+          templateUrl: 'js/Station/partials/stations.html',
           resolve: {
             stations: function(StationsService){
               return StationsService.getAll();
@@ -26,19 +26,19 @@ angular.module('room-share', ['ui.router', 'restangular']).constant('_', _)
         },
         'findNearStation@home': {
           controller: 'NearStationController',
-          templateUrl: 'nearstation.html'
+          templateUrl: 'js/Station/partials/nearstation.html'
         }
 
       }
     })
     .state('stations', {
       abstract: true,
-      url: '/bicloo',
+      url: '/stations',
       template : '<ui-view/>'
     })
     .state('stations.detail',{
       url: '/:stationId',
-      templateUrl: 'stationsDetails.html',
+      templateUrl: 'js/Station/partials/stationsDetails.html',
       controller: 'StationsDetailsController',
       resolve: {
         station : function(StationsService, $stateParams){
