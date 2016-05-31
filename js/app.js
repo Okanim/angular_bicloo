@@ -33,12 +33,11 @@ angular.module('room-share', ['ui.router', 'restangular']).constant('_', _)
     })
     .state('stations.detail',{
       url: '/:stationId',
-      templateUrl: 'js/Room/partials/room.connected.html',
-      controller: 'RoomsController',
+      templateUrl: 'stationsDetails.html',
+      controller: 'StationsDetailsController',
       resolve: {
-        room: function(RoomsService, $stateParams){
-          debugger;
-          return RoomsService.getRoom($stateParams.roomId);
+        details : function(StationsService, $stateParams){
+          return StationsService.getStationDetails($stateParams.StationId);
         }
       }
     })
