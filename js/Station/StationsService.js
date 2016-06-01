@@ -1,7 +1,7 @@
 require('angular');
 
 angular.module('bicloo')
-.factory('StationsService',['Restangular', '_', function(Restangular){
+.factory('StationsService',['Restangular', '_', '$geolocation', function(Restangular, _, $geolocation){
   let stations = Restangular.all('stations');
 
   //See http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
@@ -25,14 +25,17 @@ angular.module('bicloo')
     getStationDetails : function(stationId){
       return Restangular.one('stations', stationId).get();
     },
-    getNearestStations: function(location, optionalCondition= () => true){
-      return this.getAll()
-                  .then(
-                    stations => stations.filter(
-                      station => (getDistanceFromLatLonInKm(location.latitude, location.longitude, station.position.lat, station.position.lng) < 0.5)
-                                  && optionalCondition(station)
-                      )
-                    )
+    getNearestStations: function(optionalCondition= () => true, distance){
+      return $geolocation.getCurrentPosition({
+              timeout: 60000
+           }).then( ({coords}) => {
+             return this.getAll().then(
+               stations => stations.filter(
+                 station => (getDistanceFromLatLonInKm(coords.latitude, coords.longitude, station.position.lat, station.position.lng) < distance)
+                             && optionalCondition(station)
+                 )
+               )
+           });
     }
   }
 }]);
