@@ -1,12 +1,21 @@
-<div class="">
-  <table>
+<h1>Bicloo Stations on Nantes</h1>
+<div class="filter">
+  <button type="button" name="button" ng-click="needABicloo()">Trouve un bicloo</button>
+  <button type="button" name="button" ng-click="throwABicloo()">Debarasse toi de ton bicloo</button><br>
+  <button type="button" name="button" ng-click="getAll()">All</button>
+</div>
+<table>
+  <thead>
+    <tr><th>Address</th><th>Status</th></tr>
+  </thead>
+  <tbody>
     <tr ng-repeat="station in stations">
       <td>
-          <a href="" ng-click="goToStationDetails(station.number)">{{station.address}}</a>
+        <a href="" ng-click="goToStationDetails(station.number)">{{station.address}}</a>
       </td>
       <td>
-        {{station.status}}
+        <span class="{{station.status | lowercase }}"></span>
       </td>
     </tr>
-  </table>
-</div>
+  </tbody>
+</table>
