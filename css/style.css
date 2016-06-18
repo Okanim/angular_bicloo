@@ -47,6 +47,14 @@ table{
   transition: all 0.2s;
 }
 
+table a{
+  color: #334854;
+}
+table a:hover{
+  color: #273841;
+  text-decoration: underline;
+}
+
 table th{
   background: #303841;
   height: 54px;
