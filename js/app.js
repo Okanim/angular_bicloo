@@ -43,6 +43,10 @@ angular.module('bicloo', ['ui.router', 'restangular', 'ngGeolocation']).constant
     })
 }]).run(function($rootScope) {
   $rootScope.$on("$stateChangeError", console.log.bind(console));
+}).filter('removeNoise', function(){
+  return function(input){
+    return input.substring(input.indexOf('-')+1,  input.length);
+  }
 });
 
 require('./Station/StationsService')

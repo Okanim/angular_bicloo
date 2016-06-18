@@ -1,28 +1,7 @@
-<table>
-  <tr>
-    <td>
-      {{station.name}}
-    </td>
-    <td>
-      {{station.address}}
-    </td>
-    <td>
-      {{station.status}}
-    </td>
-    <td>
-      {{station.banking}}
-    </td>
-    <td>
-      {{station.bonus}}
-    </td>
-    <td>
-      {{station.bikes_stands}}
-    </td>
-    <td>
-      {{station.available_bikes_stands}}
-    </td>
-    <td>
-      {{station.available_bikes}}
-    </td>
-  </tr>
-</table>
+<div class="details ">
+  <h1>{{station.name | removeNoise}} <span class="{{station.status | lowercase}} "></span></h1>
+  <p>{{station.address}}</p>
+  <p> Banking : {{(station.banking)?'Yes':'No'}}</p>
+  <p> Bonus : {{(station.bonus)?'Yes':'No'}}</p>
+  <p> Bicloo : {{station.available_bikes}} / {{station.bike_stands}}</p>
+</div>
