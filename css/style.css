@@ -34,6 +34,8 @@ table{
   border-collapse: collapse;
   border: 1px solid #303841;
   background: #EEEEEE;
+  text-align: center;
+  transition: all 0.2s;
 }
 
 table th{
@@ -45,7 +47,6 @@ table th{
   color: white;
   border: 1px solid #262c33;
   box-shadow: inset 0px 1px 2px #3a444f;
-  transition: all 0.2s;
 }
 tr {
   border-bottom: 1px solid #cccccc;
@@ -87,6 +88,7 @@ td.selected {
   width: 15vw;
   margin-right: 1.3vw;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .filter button:last-child{

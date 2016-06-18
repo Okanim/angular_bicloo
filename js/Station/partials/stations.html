@@ -6,12 +6,15 @@
 </div>
 <table>
   <thead>
-    <tr><th>Address</th><th>Status</th></tr>
+    <tr><th>Address</th><th>Available Bicloo</th><th>Status</th></tr>
   </thead>
   <tbody>
     <tr ng-repeat="station in stations">
       <td>
         <a href="" ng-click="goToStationDetails(station.number)">{{station.address}}</a>
+      </td>
+      <td>
+        {{ station.available_bikes }}
       </td>
       <td>
         <span class="{{station.status | lowercase }}"></span>

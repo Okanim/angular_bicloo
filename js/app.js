@@ -23,14 +23,8 @@ angular.module('bicloo', ['ui.router', 'restangular', 'ngGeolocation']).constant
               return StationsService.getAll();
             }
           }
-        },
-        'findNearStation@home': {
-          controller: 'NearStationController',
-          templateUrl: 'js/Station/partials/nearstation.html'
         }
-
       }
-
     })
     .state('stations', {
       abstract: true,
@@ -51,7 +45,6 @@ angular.module('bicloo', ['ui.router', 'restangular', 'ngGeolocation']).constant
   $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
 
-require('./Station/NearStationController')
 require('./Station/StationsService')
 require('./Station/StationsController')
 require('./Station/StationsDetailsController')
