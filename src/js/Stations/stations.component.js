@@ -1,4 +1,4 @@
-import controller from './station.controller';
+import controller from './stations.controller';
 
 const StationsComponent = {
   bindings:{

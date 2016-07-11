@@ -12,7 +12,7 @@ class StationsController {
   }
 
   needABicloo(){
-    .StationsService
+    StationsService
       .getNearestStations(station => station.available_bikes > 0, 0.5)
       .then(stations => this.stations = stations);
   }
