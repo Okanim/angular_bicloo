@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-copy-file": "/bin/cp -f static/index.html dist/index.html",
-    "build": "browserify js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
-    "watch": "watchify js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
+    "build-copy-file": "/bin/cp -f src/index.html dist/index.html",
+    "build": "browserify src/js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
+    "watch": "watchify src/js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
     "serve": "npm run build && http-server ./ -c-1"
 },
   "author": "",
@@ -14,7 +14,8 @@
   "dependencies": {
     "angular": "~1.5.5",
     "angular-ui-router": "~0.3.0",
-    "restangular": "~1.5.2"
+    "restangular": "~1.5.2",
+    "ngGeolocation": "file:libs/ngGeolocation"
   },
   "devDependencies": {
     "babel-preset-es2015": "~6.9.0",

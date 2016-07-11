@@ -1,6 +1,6 @@
 'use strict';
 
-angular
+const ngGeolocation = angular
     .module('ngGeolocation', [])
     .factory('$geolocation', ['$rootScope', '$window', '$q', function($rootScope, $window, $q) {
 
@@ -68,4 +68,6 @@ angular
         };
 
         return retVal;
-    }]);
+    }]).name;
+
+module.exports = ngGeolocation;
