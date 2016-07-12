@@ -8,6 +8,9 @@ const root = angular
     Stations,
     uiRouter
   ])
-  .component('app', AppComponent);
+  .component('app', AppComponent)
+  .run(function($rootScope) {
+    $rootScope.$on("$stateChangeError", console.log.bind(console));
+  });
 
 export default root;

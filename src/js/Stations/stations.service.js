@@ -2,7 +2,7 @@ class StationsService {
   constructor(Restangular, $geolocation){
     this.stations = Restangular.all('stations');
     this.$geolocation = $geolocation;
-    Restangular = Restangular;
+    this.Restangular = Restangular;
   }
 
   getAll() {
@@ -10,7 +10,7 @@ class StationsService {
   }
 
   getStationDetails(stationId) {
-    return Restangular.one(stationId).get();
+    return this.Restangular.one('stations', stationId).get();
   }
 
   getNearestStations(distance, optionalCondition = () => true) {

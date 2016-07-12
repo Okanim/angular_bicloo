@@ -23,20 +23,15 @@ const stations = angular
     RestangularProvider.setBaseUrl('https://api.jcdecaux.com/vls/v1/');
     RestangularProvider.setRequestSuffix('?contract=Nantes&apiKey=f9d62cfb40a43eb37ebb196f3d80fd24d6a299e7');
     $urlRouterProvider.otherwise('/home');
+    //Suppress view system, we don't need this here.
+    //Resolve can't be fetched when its in view with ui-router 1.0.0-alpha.5
+    //See this issue for more information : https://github.com/angular-ui/ui-router/issues/2858
     $stateProvider.state('home', {
       url: '/home',
-      views:{
-        '@': {
-          template: `
-          <div class="">
-            <div ui-view="stations"></div>
-          </div>`,
-        },
-        'stations@home': {
-          component: 'stations',
-          resolve: {
-            stationsData: StationsService => ['StationsService.getAll()']
-          }
+      component: 'stations',
+      resolve: {
+        stations: StationsService => {
+              return StationsService.getAll();
         }
       }
     });

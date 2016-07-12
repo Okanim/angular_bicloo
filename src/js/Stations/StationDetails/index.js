@@ -1,5 +1,6 @@
 import angular from 'angular';
 import StationDetailsComponent from './station-details.component';
+import StationsService from '../stations.service';
 import uiRouter from 'angular-ui-router';
 
 const stationDetails = angular
@@ -15,7 +16,7 @@ const stationDetails = angular
     })
     .state('stations.details',{
       url: '/:stationId',
-      component: 'station-details',
+      component: 'stationDetails',
       resolve: {
          station: (StationsService, $stateParams) => StationsService.getStationDetails($stateParams.stationId)
        }

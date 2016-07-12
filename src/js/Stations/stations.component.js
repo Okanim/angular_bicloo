@@ -2,7 +2,7 @@ import controller from './stations.controller';
 
 const StationsComponent = {
   bindings:{
-    stationsData: '<'
+    stations: '<'
   },
   controller,
   template: `

@@ -5,17 +5,10 @@ class StationsController {
   }
 
   $onInit() {
-    debugger;
     this.stations = this.stations || [];
     if(this.stations.length === 0){
       this.StationsService.getAll()
         .then(stations => this.stations = stations);
-    }
-  }
-
-  $onChanges(changes){
-    if(changes.stationsData){
-      this.stations = Object.assign([], this.stationsData);
     }
   }
 
@@ -35,7 +28,7 @@ class StationsController {
     this.StationsService.getAll().then(stations => this.stations = stations);
   }
 
-  gotToDetails({stationId}) {
+  goToDetails({stationId}) {
     this.$state.go('stations.details', {stationId});
   }
 }
