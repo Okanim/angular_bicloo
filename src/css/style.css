@@ -138,3 +138,9 @@ td.selected {
 .back{
   text-align: left;
 }
+
+stations, .details{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
