@@ -6,7 +6,7 @@ const stationDetails = angular
   .module('stations.details', [
     uiRouter
   ])
-  .component('station-details', StationDetailsComponent)
+  .component('stationDetails', StationDetailsComponent)
   .config(($stateProvider) => {
     $stateProvider.state('stations', {
       abstract: true,

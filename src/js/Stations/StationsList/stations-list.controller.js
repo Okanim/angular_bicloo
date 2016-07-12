@@ -1,7 +1,5 @@
 class StationsListController {
-  controller(stations){
-    debugger;
-    this.stations = stations;
+  controller(){
   }
 
   $onInit(){
@@ -32,7 +30,5 @@ class StationsListController {
     );
   }
 }
-
-StationsListController.$inject = ['stations'];
 
 export default StationsListController;
