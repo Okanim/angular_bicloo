@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "build": "browserify src/js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
-    "watch": "watchify src/js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
-    "serve": "npm run build && http-server ./src/ -c-1"
+    "build-static": "cp src/index.html dist/index.html && cp -R src/css dist/css && cp -R src/img dist/img",
+    "build": "npm run build-static && browserify src/js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
+    "watch": "npm run build && watchify src/js/app.js -o dist/bundle.js -t [ babelify --presets [ es2015 ] ] -d",
+    "serve": "npm run build && http-server ./dist/ -c-1"
   },
   "author": "",
   "license": "BSD-2-Clause",

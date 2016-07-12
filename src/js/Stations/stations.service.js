@@ -29,7 +29,7 @@ class StationsService {
       return d;
     }
 
-    const stationsPromise = $geolocation.getCurrentPosition({
+    const stationsPromise = this.$geolocation.getCurrentPosition({
       timeout: 60000
     }).then( ({coords}) => {
       return this.getAll()

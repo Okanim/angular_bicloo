@@ -2,7 +2,7 @@ import controller from './stations.controller';
 
 const StationsComponent = {
   bindings:{
-    stations: '<'
+    stationsData: '<'
   },
   controller,
   template: `
@@ -13,7 +13,6 @@ const StationsComponent = {
       <button type="button" name="button" ng-click="$ctrl.getAll()">All</button>
     </div>
     <stations-list stations="$ctrl.stations" on-go-to-details="$ctrl.goToDetails($event);"></stations-list>
-    </table>
   `
 };
 

@@ -1,9 +1,12 @@
 import angular from 'angular';
-import StationsListComponent from './station-details.component';
+import StationDetailsComponent from './station-details.component';
+import uiRouter from 'angular-ui-router';
 
-const stationsList = angular
-  .module('stations.details', [])
-  .component('station-details', StationsComponent)
+const stationDetails = angular
+  .module('stations.details', [
+    uiRouter
+  ])
+  .component('station-details', StationDetailsComponent)
   .config(($stateProvider) => {
     $stateProvider.state('stations', {
       abstract: true,
@@ -14,10 +17,10 @@ const stationsList = angular
       url: '/:stationId',
       component: 'station-details',
       resolve: {
-         station: TodoService => StationsService.getStationDetails($stateParams.stationId)
+         station: (StationsService, $stateParams) => StationsService.getStationDetails($stateParams.stationId)
        }
     });
   })
   .name;
 
-export default stationsList;
+export default stationDetails;

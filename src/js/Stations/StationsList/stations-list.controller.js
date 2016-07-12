@@ -1,9 +1,11 @@
 class StationsListController {
-  controller(stations, EventEmitter){
+  controller(stations){
+    debugger;
     this.stations = stations;
   }
 
   $onInit(){
+    debugger;
     this.stationNodes = this.stations
       .reduce((stationNodes, station) => {
         return stationNodes + `
@@ -31,5 +33,6 @@ class StationsListController {
   }
 }
 
-StationsListController.$inject = ['EventEmitter'];
-export default StationsListController
+StationsListController.$inject = ['stations'];
+
+export default StationsListController;

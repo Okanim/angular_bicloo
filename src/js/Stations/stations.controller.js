@@ -1,37 +1,45 @@
 class StationsController {
   constructor(StationsService, $state) {
-    this.stations = stations;
+    this.StationsService = StationsService;
+    this.$state = $state;
   }
 
   $onInit() {
+    debugger;
     this.stations = this.stations || [];
-    if(this.stations.length > 0){
-      StationsService.getAll()
+    if(this.stations.length === 0){
+      this.StationsService.getAll()
         .then(stations => this.stations = stations);
     }
   }
 
+  $onChanges(changes){
+    if(changes.stationsData){
+      this.stations = Object.assign([], this.stationsData);
+    }
+  }
+
   needABicloo(){
-    StationsService
+    this.StationsService
       .getNearestStations(station => station.available_bikes > 0, 0.5)
       .then(stations => this.stations = stations);
   }
 
   throwABicloo() {
-    StationsService
+    this.StationsService
       .getNearestStations(stations => station.available_bikes_stands > 0, 0.5)
       .then(stations => this.stations = stations);
   }
 
   getAll() {
-    StationsService.getAll().then(stations => this.stations = stations);
+    this.StationsService.getAll().then(stations => this.stations = stations);
   }
 
   gotToDetails({stationId}) {
-    $state.go('stations.details', {stationId});
+    this.$state.go('stations.details', {stationId});
   }
 }
 
-StationsListController.$inject = [ 'StationsService', '$state'];
+StationsController.$inject = [ 'StationsService', '$state'];
 
 export default StationsController;

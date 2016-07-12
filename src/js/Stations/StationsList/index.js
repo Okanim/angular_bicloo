@@ -3,7 +3,7 @@ import StationsListComponent from './stations-list.component';
 
 const stationsList = angular
   .module('stations.list', [])
-  .component('stations-list', StationsComponent)
+  .component('stations-list', StationsListComponent)
   .name;
 
 export default stationsList;
