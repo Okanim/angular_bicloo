@@ -21,7 +21,7 @@ Acutally, there is 4 features :
 
 ## After the hackaton
 
-We add some design to the website, and change the structure of the project in a component way (We used (Todd Motto styleguide)[https://github.com/toddmotto/angular-styleguide]).
+We add some design to the website, and change the structure of the project in a component way (We used [Todd Motto styleguide](https://github.com/toddmotto/angular-styleguide)).
 
 ## Roadmap
 
