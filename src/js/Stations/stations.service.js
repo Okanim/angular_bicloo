@@ -13,7 +13,7 @@ class StationsService {
     return this.Restangular.one('stations', stationId).get();
   }
 
-  getNearestStations(distance, optionalCondition = () => true) {
+  getNearestStations(optionalCondition = () => true) {
     //See http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
     function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
       var R = 6371; // Radius of the earth in km
@@ -34,7 +34,14 @@ class StationsService {
     }).then( ({coords}) => {
       return this.getAll()
         .then(stations => stations
-          .filter(station => (getDistanceFromLatLonInKm(coords.latitude, coords.longitude, station.position.lat, station.position.lng) < distance) && optionalCondition(station)));
+          .reduce( (stationBefore, stationAfter) => {
+          if (getDistanceFromLatLonInKm(coords.latitude, coords.longitude, stationBefore.position.lat, stationBefore.position.lng) < getDistanceFromLatLonInKm(coords.latitude, coords.longitude, stationAfter.position.lat, stationBefore.position.lng)){
+            return (optionalCondition(stationBefore)) ? stationBefore : stationAfter;
+          } else {
+            return (optionalCondition(stationAfter)) ? stationAfter : stationBefore;
+          }
+        }))
+
           });
    return stationsPromise;
   }
