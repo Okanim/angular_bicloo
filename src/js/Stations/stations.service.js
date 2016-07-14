@@ -1,8 +1,9 @@
 class StationsService {
-  constructor(Restangular, $geolocation){
+  constructor(Restangular, $geolocation, MapService){
     this.stations = Restangular.all('stations');
     this.$geolocation = $geolocation;
     this.Restangular = Restangular;
+    this.MapService = MapService;
   }
 
   getAll() {
@@ -33,20 +34,25 @@ class StationsService {
       timeout: 60000
     }).then( ({coords}) => {
       return this.getAll()
-        .then(stations => stations
-          .reduce( (stationBefore, stationAfter) => {
-          if (getDistanceFromLatLonInKm(coords.latitude, coords.longitude, stationBefore.position.lat, stationBefore.position.lng) < getDistanceFromLatLonInKm(coords.latitude, coords.longitude, stationAfter.position.lat, stationBefore.position.lng)){
-            return (optionalCondition(stationBefore)) ? stationBefore : stationAfter;
-          } else {
-            return (optionalCondition(stationAfter)) ? stationAfter : stationBefore;
-          }
-        }))
-
-          });
+        .then(stations =>
+          Promise.all(stations
+            .map( station => this.MapService.getDistance([coords.latitude, coords.longitude], [station.position.lat, station.position.lng]).then( distance => ({station, distance}) ) ))
+        )
+        .then(stations =>
+          stations
+            .reduce( (prevStation, station) => {
+              debugger;
+            if (prevStation.distance < station.distance){
+              return (optionalCondition(prevStation.station)) ? prevStation : station;
+            } else {
+              return (optionalCondition(station.station)) ? station : prevStation;
+            }
+          }))
+      });
    return stationsPromise;
   }
 }
 
-StationsService.$inject = ['Restangular', '$geolocation'];
+StationsService.$inject = ['Restangular', '$geolocation', 'MapService'];
 
 export default StationsService;

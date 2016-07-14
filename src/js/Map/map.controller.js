@@ -1,3 +1,5 @@
+import L from 'leaflet';
+
 class MapController {
   constructor($element) {
     this.$element = $element;

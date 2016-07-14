@@ -15,13 +15,13 @@ class StationsController {
   needABicloo(){
     this.StationsService
       .getNearestStations(station => station.available_bikes > 0)
-      .then(stations => this.stations = [stations]);
+      .then(stations => this.stations = [stations.station]);
   }
 
   throwABicloo() {
     this.StationsService
-      .getNearestStations(stations => station.available_bikes_stands > 0)
-      .then(stations => this.stations = [stations]);
+      .getNearestStations(station => station.available_bikes_stands > 0)
+      .then(stations => this.stations = [stations.station]);
   }
 
   getAll() {
