@@ -26,5 +26,5 @@ We add some css to the website, and change the structure of the project in a com
 ## Roadmap
 
 * ~~Add a map component~~ - **_Done_** 
-* **~~Erase limitation~~ and improve the logic of "find the nearest station"** - _In progress_
+* **~~Erase limitation and improve the logic of "find the nearest station"~~** - _In progress (Have to find a way to make it faster !)_
 
