@@ -2,7 +2,7 @@ import controller from './map.controller';
 
 const MapComponent = {
   bindings: {
-    markers: '<'
+    positions: '<'
   },
   controller,
   template: `
