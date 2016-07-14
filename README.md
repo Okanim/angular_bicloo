@@ -21,10 +21,10 @@ There are 4 features :
 
 ## After the hackaton
 
-We add some css to the website, and change the structure of the project in a component way (We used [Todd Motto styleguide](https://github.com/toddmotto/angular-styleguide)).
+We add some css to the website, and change the structure of the project in a component way (We follow partially [Todd Motto styleguide](https://github.com/toddmotto/angular-styleguide)).
 
 ## Roadmap
 
-* **Add a map component** - _In progress_ 
+* ~~Add a map component~~ - **_Done_** 
 * Erase limitation and improve the logic of "find the nearest station"
 * Play with service worker, and try to make progressive web app
