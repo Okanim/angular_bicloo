@@ -10,6 +10,7 @@ class MapController {
       zoom: 13
     }
     this.markers = [];
+    L.Icon.Default.imagePath = '/lib/leaflet/images';
   }
 
   $onChanges(changes){
