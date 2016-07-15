@@ -36,18 +36,24 @@ class StationsService {
       return this.getAll()
         .then(stations =>
           Promise.all(stations
+            .filter( station => optionalCondition(station)
+              && getDistanceFromLatLonInKm(coords.latitude, coords.longitude, station.position.lat, station.position.lng) < 1 )
             .map( station => this.MapService.getDistance([coords.latitude, coords.longitude], [station.position.lat, station.position.lng]).then( distance => ({station, distance}) ) ))
         )
-        .then(stations =>
-          stations
-            .reduce( (prevStation, station) => {
-              debugger;
-            if (prevStation.distance < station.distance){
-              return (optionalCondition(prevStation.station)) ? prevStation : station;
-            } else {
-              return (optionalCondition(station.station)) ? station : prevStation;
-            }
-          }))
+        .then(stations => {
+          if(stations.length > 0){
+            return stations
+              .reduce( (prevStation, station) => {
+              if (prevStation.distance < station.distance){
+                return prevStation
+              } else {
+                return station;
+              }
+            })
+          } else {
+            return {station: []}
+          }
+        });
       });
    return stationsPromise;
   }
