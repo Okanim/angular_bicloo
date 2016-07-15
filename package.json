@@ -9,7 +9,7 @@
     "serve": "npm run build && http-server ./dist/ -c-1"
   },
   "author": "",
-  "license": "BSD-2-Clause",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "angular": "~1.5.5",
     "angular-ui-router": "^1.0.0-beta.1",
