@@ -8,7 +8,7 @@ There are conditions for this hackaton :
 * We had to use a REST API, create by us or an existing Open API
 * We had to present something at the end of the day
 
-## Our choices 
+## Our choices
 
 We have choosen to work with [JCDecaux Open Api](https://developer.jcdecaux.com/#/home) to get data about Bicloo (the self-service bikes at Nantes).
 
@@ -25,6 +25,5 @@ We add some css to the website, and change the structure of the project in a com
 
 ## Roadmap
 
-* ~~Add a map component~~ - **_Done_** 
-* **~~Erase limitation and improve the logic of "find the nearest station"~~** - _In progress (Have to find a way to make it faster !)_
-
+* ~~Add a map component~~ - **_Done_**
+* ~~Erase limitation and improve the logic of "find the nearest station"~~ - **_Done (Had a limitation of 1km to reduce number of call)_**
