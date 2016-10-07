@@ -29,21 +29,34 @@ class StationsService {
       var d = R * c; // Distance in km
       return d;
     }
+    
+    //Make an object that contains stations and their distance between the user and the station
+    function getStationsWithDistance( {coords} ){
+     let coupleStationWithDistance = funcion(stations){
+       //Filtered Stations, with the optional condition and a distance from the position.
+       let filteredStations = stations.filter( station => optionalContidion(station) 
+                                             && getDistanceFromLatLonInKm(coords.latitude
+                                                                         , coords.longitude
+                                                                         , station.position.lat
+                                                                         , station.position.lng) < 1 );
+       let promisedStationsDistance = filteredStations.map( station => this.MapService.getDistance([coords.latitude, coords.longitude]
+                                                                                                  , [station.position.lat, station.position.lng])
+                                                                                      .then( distance => ({station, distance}) ) )
+       //Needed to get all Stations in one promise (due of map on filteredStations).
+       return Promise.all(promisedStationsDistance);
+     }
+     
+      return this.getAll().then(coupleStationWithDistance.bind(this));
+    }
 
     const stationsPromise = this.$geolocation.getCurrentPosition({
       timeout: 60000
-    }).then( ({coords}) => {
-      return this.getAll()
-        .then(stations =>
-          Promise.all(stations
-            .filter( station => optionalCondition(station)
-              && getDistanceFromLatLonInKm(coords.latitude, coords.longitude, station.position.lat, station.position.lng) < 1 )
-            .map( station => this.MapService.getDistance([coords.latitude, coords.longitude], [station.position.lat, station.position.lng]).then( distance => ({station, distance}) ) ))
-        )
-        .then(stations => {
-          if(stations.length > 0){
-            return stations
-              .reduce( (prevStation, station) => {
+    }).then(getStationsWithDistance.bind(this))
+      .then(stations => {
+        if(stations.length > 0){
+          //Sort stations
+          //TO DO => Check sort function
+          return stations.reduce( (prevStation, station) => {
               if (prevStation.distance < station.distance){
                 return prevStation
               } else {
@@ -51,6 +64,7 @@ class StationsService {
               }
             })
           } else {
+           
             return {station: []}
           }
         });
